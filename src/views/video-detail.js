@@ -1,3 +1,13 @@
-/**
- * Created by Patrick on 7/13/17.
- */
+import React from 'react'
+
+class VideoDetail extends React.Component {
+	render() {
+		return(
+				<div>
+					<h1>VideoDetail</h1>
+				</div>
+		)
+	}
+}
+
+export default VideoDetail;
