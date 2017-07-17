@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 const VideoListItem = ({video}) => {
 	const imageURL = video.snippet.thumbnails.default.url;
 	let videoTitle = video.snippet.title;

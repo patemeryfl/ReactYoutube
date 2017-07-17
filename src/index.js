@@ -6,31 +6,39 @@ import VideoDetail from './views/video-detail';
 import VideoList from './views/video-list';
 import YTSearch from 'youtube-api-search';
 import registerServiceWorker from './registerServiceWorker';
-
 const apiKey = 'AIzaSyB3fzoGiZZxiYu802g5_CO_XYh8XnQP0b8';
 
 //Create Parent Container to Manage Each View
 class App extends Component {
 	constructor(props) {
 		super(props);
+
 		this.state = {
-			videos: []
+			videos: [],
+			selectedVideo: null
 		};
+
 		YTSearch({key: apiKey, term: 'cats'}, (videos) => {
-			this.setState({videos})
+			this.setState({
+				videos: videos,
+				selectedVideo: videos[0]
+			});
 		});
 	}
+
 	render() {
 		return (
 		<div className="container">
 				<SearchBar/>
 				<div className="col-xs-8">
 					<div className="jumbotron">
-						<VideoDetail/>
+						<VideoDetail video={this.state.selectedVideo}/>
 					</div>
 				</div>
 				<div className="col-xs-4 video-list">
-					<VideoList videos={this.state.videos}/>
+					<VideoList
+							onVideoSelect={selectedVideo => this.setState({selectedVideo})}
+							videos={this.state.videos}/>
 				</div>
 		</div>
 		);
